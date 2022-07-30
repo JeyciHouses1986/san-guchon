@@ -1,26 +1,61 @@
+import Card from "react-bootstrap/Card";
+import Contador from '../Contador';
+import { useState, useEffect } from "react";
+import getFetch from "../Productos";
 import './ItemListContainer.css'
 
-export default function ItemListContainer () {
+export default function ItemListContainer() {
 
+    function descItem() {
+        return alert("Estamos preparando la descripcion de este San Guchon");
+    }
+    const [Data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        getFetch
+            .then((resp) => setData(resp))
+            .catch((err) => console.log(err))
+            .finally(() => setLoading(false));
+    }, []);
 
+    return (
+        <div className="d-flex row col-12 m-1 p-1 justify-content-evenly">
+            {loading ? (
 
-    return(
-        <div class="container-fluid">
-        <div className="product-cmp row">
-            <div className="col-3">
-                <img className="img-fluid" src="http://fpoimg.com/300x250?text=Preview" />
-            </div>          
-            <div className="col content">
-                <h3>Este es el titulo del producto</h3>
-                <h4>$1000</h4>
-                <p>
-                    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
-                </p>
-                <button className="btn btn-secondary">Guardar</button>
-                <button className="btn btn-primary">Comprar</button>                
-            </div>          
-        </div>
+                <h3 className="text-dark text-center">
+                    ¡Aguarde! Los santos vienen llegando...
+                </h3>
+            ) : (
+                Data.map((prod) => (
+                    <Card key={prod.id} className="col-3 m-2 p-7">
+                        <Card.Img
+                            variant="top"
+                            src={prod.imagen}
+                            className="img-fluid"
+                        />
+                        <Card.Body>
+                            <Card.Title>
+                                {prod.nombre}
+                            </Card.Title>
+                            <Card.Text className="fw-bold fs-3">${prod.precio}</Card.Text>
+                            <div className="text-center">
+                                <button type="button" className="btn btn-outline-dark" onClick={descItem}>
+                                    Detalle
+                                </button>
+                            </div>
+                            <div className="container-fluid">
+                                <div className="row">
+                                    
+                                        <Contador stock={prod.stock} inicial={0} />
+                                        <button type="button" className="btn btn-primary">Agregar al carrito</button>
+                                    
+                                </div>
+                            </div>
+                        </Card.Body>
+                    </Card>
+                ))
+            )}
         </div>
     );
 }

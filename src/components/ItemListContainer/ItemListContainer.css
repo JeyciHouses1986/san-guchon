@@ -3,10 +3,12 @@
     *background-color: #f6fed5;
     padding: 22px;
 }
-img { 
-    max-width: 200px;
-}
 
 .content {
     text-align: right;
+}
+
+img {
+    max-height: 180px;
+    max-width: 10px;
 }
