@@ -1,42 +1,38 @@
-import { useState, useEffect } from "react";
-import ItemList from "../ItemList"
-import Data from '../Productos/data.json'
+import React from 'react'
+import { useEffect, useState } from 'react'
+import { getProducts, getProductsByCategory } from '../Productos/asyncmock'
+import ItemList from '../ItemList'
+import { useParams } from 'react-router-dom'
 
 
-export default function ItemListContainer() {
+const ItemListContainer = ({greeting}) => {
+  const [products, setProducts] = useState([]);
+  const { categoryId } = useParams()
 
+  useEffect(() => {
 
+    if(!categoryId){
+      getProducts().then(products => {
+        setProducts(products)
+          })
+    }
+    else{
+      getProductsByCategory(categoryId).then(products => {
+        setProducts(products)
+      })
+    }
+      
+  }, [categoryId])
+  
 
-    const[loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-    const[resultado, setResultado] = useState([]);
+  return (
+    <div>
+      <h1>{greeting}</h1>
+      <ItemList products={products}/>
 
-    useEffect(() => {
-        const productCarrito = new Promise ((res, rej)=>{
-        setTimeout(() => {
-                res(Data)
-                rej("¡Error! No se pudieron cargar los productos")
-        }, 2000);
-        })
-        
-        productCarrito
-            .then((result)=>{
-                setResultado(result)
-            })
-            .catch(()=> {
-                setError(error === true)
-            })
-            .finally(()=>{
-                setLoading(false)
-            });
-        
-    })
-    return (
-        <>
-            {
-              loading ? <h4 className='charge'>Aguarde, los santos están llegando!!!</h4> : <ItemList productos={resultado} />
-            }
-        </>
-    )
+    </div>
+  )
 }
+
+export default ItemListContainer
 

@@ -1,15 +1,12 @@
+import React from 'react'
 import Item from "../Item";
 
-export default function ItemList(props){
-    return(
-        <div className="d-flex row col-12 m-1 p-1 justify-content-evenly" >
-            {
-            props.productos.map((via)=>{
-                return(
-                    <Item key={via.id} {...via}/>
-                )
-            })
-            }
-        </div>
-    );
-}
+const ItemList = ({products}) => {
+    return (
+      <div className="d-flex row col-12 m-1 p-1 justify-content-evenly">
+        {products.map(prod => <Item key={prod.id} {...prod}/>)}
+      </div> 
+    )
+  }
+  
+  export default ItemList
