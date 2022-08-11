@@ -1,81 +1,81 @@
 const products = [
     {
-        id: 0,
+        id: '0',
         nombre: "San Carlito",
         precio: 680,
-        category: "Milagro",
+        category: "milagro",
         stock: 20,
         imagen: "../../imagenes/san-carlito.jpg"
 
     },
     {
-        id: 1,
+        id: '1',
         nombre: "El Ave María",
         precio: 790,
-        category: "Milagro",
+        category: "milagro",
         stock: 10,
         imagen: "../../imagenes/ave-maria.png"
 
     },
     {
-        id: 2,
+        id: '2',
         nombre: "San Roque",
         precio: 820,
-        category: "Pecado",
+        category: "pecado",
         stock: 10,
         imagen: "../../imagenes/san-roque.jpg"
 
     },
     {
-        id: 3,
+        id: '3',
         nombre: "Monja Francesa",
         precio: 590,
-        category: "Pecado",
+        category: "pecado",
         stock: 20,
         imagen: "../../imagenes/monja-francesa.jpg"
 
     },
     {
-        id: 4,
+        id: '4',
         nombre: "Pescado capital",
         precio: 890,
-        category: "Pecado",
+        category: "pecado",
         stock: 5,
         imagen: "../../imagenes/pescado-capital.jpg"
 
     },
     {
-        id: 5,
+        id: '5',
         nombre: "El milán",
         precio: 940,
-        category: "Milagro",
+        category: "milagro",
         stock: 10,
         imagen: "../../imagenes/el-milan.jpg"
 
     },
     {
-        id: 6,
+        id: '6',
         nombre: "Sacrilegio",
         precio: 990,
-        category: "Pecado",
+        category: "pecado",
         stock: 5,
         imagen: "../../imagenes/sacrilegio.jpg"
 
     },
     {
-        id: 7,
+        id: '7',
         nombre: "Santa Angus",
         precio: 1060,
-        category: "Milagro",
+        category: "milagro",
         stock: 15,
         imagen: "../../imagenes/santa-angus.jpg"
 
     },
     {
-        id: 8,
+        id: '8',
         nombre: "El paraíso",
         precio: 1190,
-        category: "Milagro",
+        category: "milagro",
         stock: 5,
         imagen: "../../imagenes/el-paraiso.jpg"
 
