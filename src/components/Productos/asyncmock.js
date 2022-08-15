@@ -1,107 +1,113 @@
-const products = [
+export const PRODUCTS = [
     {
-        id: '0',
+        id: 1,
         nombre: "San Carlito",
         precio: 680,
-        category: "milagro",
+        category: 1,
         stock: 20,
-        imagen: "../../imagenes/san-carlito.jpg"
-
+        imagen: "../../imagenes/san-carlito.jpg",
+        inicial: 1,
+        estilo: "Milagro"
     },
     {
-        id: '1',
+        id: 2,
         nombre: "El Ave María",
         precio: 790,
-        category: "milagro",
+        category: 1,
         stock: 10,
-        imagen: "../../imagenes/ave-maria.png"
-
+        imagen: "../../imagenes/ave-maria.png",
+        inicial: 1,
+        estilo: "Milagro"
     },
     {
-        id: '2',
+        id: 3,
         nombre: "San Roque",
         precio: 820,
-        category: "pecado",
+        category: 2,
         stock: 10,
-        imagen: "../../imagenes/san-roque.jpg"
-
+        imagen: "../../imagenes/san-roque.jpg",
+        inicial: 1,
+        estilo: "Pecado"
     },
     {
-        id: '3',
+        id: 4,
         nombre: "Monja Francesa",
         precio: 590,
-        category: "pecado",
+        category: 2,
         stock: 20,
-        imagen: "../../imagenes/monja-francesa.jpg"
-
+        imagen: "../../imagenes/monja-francesa.jpg",
+        inicial: 1,
+        estilo: "Pecado"
     },
     {
-        id: '4',
+        id: 5,
         nombre: "Pescado capital",
         precio: 890,
-        category: "pecado",
+        category: 2,
         stock: 5,
-        imagen: "../../imagenes/pescado-capital.jpg"
-
+        imagen: "../../imagenes/pescado-capital.jpg",
+        inicial: 1,
+        estilo: "Pecado"
     },
     {
-        id: '5',
+        id: 6,
         nombre: "El milán",
         precio: 940,
-        category: "milagro",
+        category: 1,
         stock: 10,
-        imagen: "../../imagenes/el-milan.jpg"
-
+        imagen: "../../imagenes/el-milan.jpg",
+        inicial: 1,
+        estilo: "Milagro"
     },
     {
-        id: '6',
+        id: 7,
         nombre: "Sacrilegio",
         precio: 990,
-        category: "pecado",
+        category: 2,
         stock: 5,
-        imagen: "../../imagenes/sacrilegio.jpg"
-
+        imagen: "../../imagenes/sacrilegio.jpg",
+        inicial: 1,
+        estilo: "Pecado"
     },
     {
-        id: '7',
+        id: 8,
         nombre: "Santa Angus",
         precio: 1060,
-        category: "milagro",
+        category: 1,
         stock: 15,
-        imagen: "../../imagenes/santa-angus.jpg"
-
+        imagen: "../../imagenes/santa-angus.jpg",
+        inicial: 1,
+        estilo: "Milagro"
     },
     {
-        id: '8',
+        id: 9,
         nombre: "El paraíso",
         precio: 1190,
-        category: "milagro",
+        category: 1,
         stock: 5,
-        imagen: "../../imagenes/el-paraiso.jpg"
-
+        imagen: "../../imagenes/el-paraiso.jpg",
+        inicial: 1,
+        estilo: "Milagro"
     }
 ]
+const TESTING_DELAY = 3000;
 
-export const getProducts = () => {
+export function getProductsByCategory (categoryId) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(products)
-        }, 1000)
-    })
-  }
-  
-  export const getProductsByCategory = (categoryId) => {
+            if (categoryId) {
+                resolve(PRODUCTS.filter(prod => prod.category === categoryId));
+            } else {
+                resolve(PRODUCTS);
+            }
+        }, TESTING_DELAY);
+    });
+}
+
+export function getProductById (id) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(products.filter(prod => prod.category === categoryId))
-        }, 500)
+            resolve(PRODUCTS.find(prod => prod.id === id))
+        }, TESTING_DELAY)
     })
-  }
-  
-  export const getProductById = (id) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(products.find(prod => prod.id === id))
-        }, 500)
-    })
-  }
+}

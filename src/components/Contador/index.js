@@ -1,33 +1,43 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import './contador.css'
+import { Button } from "react-bootstrap";
 
-export default function Contador(props) {
-    //const handlers = useState(0);
-    const [contador, setContador] = useState(props.inicial);
+export default function Contador({ onAddItemsToCart, stock, inicial }) {
+    const [selectedNumItems, setSelectedNumItems] = useState(Number(inicial));
 
-    function agregarAlContador () {
-        if (contador >= props.stock){
-            alert(`No caigas en la gula, solo puedes pedir ${props.stock} unidades de este San Guchon`);
-    } else {
-        setContador (contador + 1);
+    const onAdd = () => {
+        console.log(`${selectedNumItems} agregados al carrito!`);
+        onAddItemsToCart(selectedNumItems);
     }
+    const agregarAlContador = () => {
+        if (selectedNumItems < stock) {
+            setSelectedNumItems(selectedNumItems + 1);
+        }
+        else {
+            alert(`No caigas en la gula, solo puedes pedir ${stock} unidades de este San Guchon`);
+        }
     }
-
-
-    function restarAlContador () {
-        if (contador>0) {
-        setContador(contador - 1);    
-        }        
+    const restarAlContador = () => {
+        if (selectedNumItems > 1) {
+            setSelectedNumItems(selectedNumItems - 1);
+        }
     }
 
 
     return (
-        <div className="d-flex flex-row justify-content-center mt-2">
-            <button className="btn btn-outline-info p-2 boton-cant" onClick={restarAlContador}>-</button>
-            <p className="p-2">
-                {contador}
-            </p>
-            <button className="btn btn-outline-info p-2 boton-cant" onClick={agregarAlContador}>+</button>
+        <div>
+            <div className="d-flex flex-row justify-content-center mt-2">
+                <button className="btn btn-outline-info p-2 boton-cant" onClick={restarAlContador}>-</button>
+                <p className="p-2">
+                    {selectedNumItems}
+                </p>
+                <button className="btn btn-outline-info p-2 boton-cant" onClick={agregarAlContador}>+</button>
+            </div>
+            <div className="container-fluid">
+                <div className="row">
+            <Button type="button" className="btn btn-primary" onClick={onAdd} >Agregar al carrito</Button>
+            </div>
+            </div>
         </div>
     )
 }

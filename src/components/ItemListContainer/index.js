@@ -1,35 +1,47 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import { getProducts, getProductsByCategory } from '../Productos/asyncmock'
-import ItemList from '../ItemList'
+import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
-
+import { getProductsByCategory } from '../Productos/asyncmock'
+import ItemList from '../ItemList'
+import './itemListContainer.css'
 
 const ItemListContainer = ({greeting}) => {
-  const [products, setProducts] = useState([]);
-  const { categoryId } = useParams()
+  const { id } = useParams();
+    const categoryId = !isNaN(id) && +id;
 
-  useEffect(() => {
+    const [productsData, setProductsData] = useState([]);
+    useEffect(() => {
 
-    if(!categoryId){
-      getProducts().then(products => {
-        setProducts(products)
-          })
-    }
-    else{
-      getProductsByCategory(categoryId).then(products => {
-        setProducts(products)
-      })
-    }
-      
-  }, [categoryId])
+        setProductsData([]);
+
+        const productsDataPromise = getProductsByCategory (categoryId);
+
+        productsDataPromise.then(
+            (data) => {
+                setProductsData(data);
+            },
+            (err) => {
+                console.log(
+                    "Ha ocurrido un error al traer los productos: ",
+                    err
+                );
+            }
+        );
+    }, [categoryId]);
   
 
   return (
     <div>
-      <h1>{greeting}</h1>
-      <ItemList products={products}/>
-
+      {Array.isArray(productsData) && productsData.length === 0 ? (
+                 <div className="waviy">
+                 <span style={{'--i':'1'}}>Aguarde... </span>
+                 <span style={{'--i':'2'}}>Los </span>
+                 <span style={{'--i':'3'}}>Santos </span>
+                 <span style={{'--i':'4'}}>vienen </span>
+                 <span style={{'--i':'5'}}>llegando </span>
+                </div>
+            ) : (
+                <ItemList products={productsData} />
+            )}
     </div>
   )
 }
