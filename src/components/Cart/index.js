@@ -19,3 +19,7 @@ export default function Cart() {
     </div>
   )
 }
+
+//este comentario es para probar el pull en mi pc y la notebook
+
+let juan = 8;
