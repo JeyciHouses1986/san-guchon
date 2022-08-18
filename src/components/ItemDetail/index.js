@@ -17,7 +17,13 @@ export default function ItemDetail ({
   const { addCartItem } = useContext(CartContext);
   const [productAddedToCard, setProductAddedToCard] = useState(false);
   const onAdd = (quantityToAdd) => {
-      addCartItem( { id, quantity: quantityToAdd } );
+      addCartItem( { 
+        id, 
+        nombre,
+        quantity: quantityToAdd,
+        imagen,
+        precio        
+    } );
 
       console.log(
           ">> Evento recibido del ItemCount! - Cantidad agregada: ",

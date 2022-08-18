@@ -4,7 +4,7 @@ import { getProductsByCategory } from '../Productos/asyncmock'
 import ItemList from '../ItemList'
 import './itemListContainer.css'
 
-const ItemListContainer = ({greeting}) => {
+export default function ItemListContainer () {
   const { id } = useParams();
     const categoryId = !isNaN(id) && +id;
 
@@ -46,5 +46,5 @@ const ItemListContainer = ({greeting}) => {
   )
 }
 
-export default ItemListContainer
+
 

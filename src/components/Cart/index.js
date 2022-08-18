@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { CartContext } from '../../context/CartContext';
+import { CartContext } from '../CartContext';
+import CartItem from '../CartItem'
 
 export default function Cart() {
 
@@ -8,18 +9,21 @@ export default function Cart() {
   console.log('>> cartData: ', cartData);
 
   return (
-    <div className='cart'>
-        Aca podemos ver la info del Cart!
-        {
-          cartData.map((item) => {
-            return <div key={item.id}>{`ID: ${item.id} - Cantidad: ${item.quantity}`}</div>
+    
+    <div className="d-flex row justify-content-evenly">
+      <h3>Santos invocados:</h3>
+      <div className="card-group">
+        { (cartData.length > 0) ? cartData.map((item) => {
+            return <CartItem key={item.id} id={item.id} quantity={item.quantity} nombre={item.nombre} imagen={item.imagen} precio={item.precio} />
           })
-
+          : 
+          "No has agregado ningun Santo a tus plegarias!"
         }
+        </div>
     </div>
   )
 }
 
-//este comentario es para probar el pull en mi pc y la notebook
 
-let juan = 8;
+
+

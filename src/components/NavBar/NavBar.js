@@ -4,9 +4,11 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import CartWidget from '../CartWidget'
+import './navbar.css'
 
 export default function NavBar() {
   return (
+    
     <Navbar className="navbar navbar-dark bg-dark"  expand="lg">
       <Container>
         <Link to={'/'}>San Guchon</Link>
@@ -16,7 +18,7 @@ export default function NavBar() {
 
             <Link to={'/category/1'}>Milagros</Link>
             <Link to={'/category/2'}>Pecados</Link>
-            <Nav.Link to="#link"><CartWidget /></Nav.Link>
+            <CartWidget />
           </Nav>
         </Navbar.Collapse>
       </Container>
