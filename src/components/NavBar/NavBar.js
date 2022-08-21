@@ -9,15 +9,15 @@ import './navbar.css'
 export default function NavBar() {
   return (
     
-    <Navbar className="navbar navbar-dark bg-dark"  expand="lg">
+    <Navbar className="navbar "  expand="lg">
       <Container>
-        <Link to={'/'}>San Guchon</Link>
+        <Nav.Link classname="logo-nav" as={Link} to={'/'}>San Guchon</Nav.Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
 
-            <Link to={'/category/1'}>Milagros</Link>
-            <Link to={'/category/2'}>Pecados</Link>
+            <Nav.Link as={Link} to={'/category/1'}>Milagros</Nav.Link>
+            <Nav.Link as={Link} to={'/category/2'}>Pecados</Nav.Link>
             <CartWidget />
           </Nav>
         </Navbar.Collapse>

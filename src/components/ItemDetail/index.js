@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Contador from '../Contador';
 import Card from "react-bootstrap/Card"
 import { Link } from 'react-router-dom';
-import { CartContext } from '../CartContext';
+import { useCartContext } from '../CartContext';
 
 export default function ItemDetail ({
   id, 
@@ -14,7 +14,7 @@ export default function ItemDetail ({
   inicial
 }) {
 
-  const { addCartItem } = useContext(CartContext);
+  const { addCartItem } = useCartContext();
   const [productAddedToCard, setProductAddedToCard] = useState(false);
   const onAdd = (quantityToAdd) => {
       addCartItem( { 

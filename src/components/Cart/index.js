@@ -1,29 +1,38 @@
-import React, { useContext } from 'react';
-import { CartContext } from '../CartContext';
-import CartItem from '../CartItem'
+import React from "react";
+import { useCartContext } from "../CartContext";
+import CartItem from "../CartItem";
+
 
 export default function Cart() {
+  const { cartData, precioFinal,finalizarCompra, eliminarTodo } = useCartContext();
 
-  const  { cartData } = useContext(CartContext);
-
-  console.log('>> cartData: ', cartData);
 
   return (
-    
     <div className="d-flex row justify-content-evenly">
       <h3>Santos invocados:</h3>
       <div className="card-group">
-        { (cartData.length > 0) ? cartData.map((item) => {
-            return <CartItem key={item.id} id={item.id} quantity={item.quantity} nombre={item.nombre} imagen={item.imagen} precio={item.precio} />
-          })
-          : 
-          "No has agregado ningun Santo a tus plegarias!"
-        }
+        {cartData.length > 0
+          ? cartData.map((item) => {
+              return (
+                <CartItem
+                  key={item.id}
+                  id={item.id}
+                  quantity={item.quantity}
+                  nombre={item.nombre}
+                  imagen={item.imagen}
+                  precio={item.precio}
+                />
+              );
+            })
+          : "No has agregado ningun Santo a tus plegarias!"}
+      </div>
+      <div className="d-flex row justify-content-evenly">
+        <h4 className="cartTotal">Monto total: ${precioFinal()}</h4>
+        <div>
+        <div> { eliminarTodo() } </div>
+        <div> {finalizarCompra()} </div>
         </div>
+      </div>
     </div>
-  )
+  );
 }
-
-
-
-

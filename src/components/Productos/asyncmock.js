@@ -90,7 +90,7 @@ export const PRODUCTS = [
         estilo: "Milagro"
     }
 ]
-const TESTING_DELAY = 3000;
+const TESTING_DELAY = 2000;
 
 export function getProductsByCategory (categoryId) {
     return new Promise((resolve, reject) => {

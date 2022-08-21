@@ -1,15 +1,17 @@
-import React, { useContext } from 'react';
+import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
-import { CartContext } from '../CartContext';
+import { useCartContext } from '../CartContext';
 import { Link } from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
+
 
 export default function CartWidget () {
 
-  const { cartData } = useContext(CartContext);
+  const { cartData } = useCartContext();
     return (
-        <Link to={`/cart`} >
+        <Nav.Link as={Link} to={`/cart`} >
         <FaShoppingCart />
         <span>{ cartData.length }</span>
-        </Link>
+        </Nav.Link>
     );
 }
