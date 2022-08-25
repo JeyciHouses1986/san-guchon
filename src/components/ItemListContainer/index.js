@@ -8,23 +8,20 @@ import {DB} from "../Firebase/configs.js"
 
 export default function ItemListContainer () {
   const [productsData, setProductsData] = useState([]);
-    const {categoryId} = useParams()
+  const { id } = useParams();
+  const categoryId = !isNaN(id) && +id;
 
     useEffect(()=>{
 
-      const colRef = collection(DB, "Productos");
+      const coleRef = collection(DB, "Productos");
      
       if(categoryId){
-        const  colFilterRef = query(colRef, 
-          where('category', '==', categoryId))
-        getDocs(colRef)
-        .then(res=> setProductsData(res.docs.map(prod => ({id:prod.id, ...prod.data()})))
-        )
+        const  colFilterRef = query(coleRef, where('category', '==', categoryId))
         getDocs(colFilterRef)
-        .then(res=> setProductsData(res.docs.map(prod => ({id:prod.id, ...prod.data()})))
+        .then(res=> setProductsData(res.docs.map(res => ({id: res.id, ...res.data()})))
         )}else{
-          getDocs(colRef)
-          .then(res=> setProductsData(res.docs.map(prod => ({id:prod.id, ...prod.data()})))
+          getDocs(coleRef)
+          .then(res=> setProductsData(res.docs.map(res => ({id: res.id, ...res.data()})))
           )
         };  
       
