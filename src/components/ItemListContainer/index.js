@@ -1,14 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom'
-import { getProductsByCategory } from '../Productos/asyncmock'
-import ItemList from '../ItemList'
-import './itemListContainer.css'
+import { useParams } from 'react-router-dom';
+import ItemList from '../ItemList';
+import './itemListContainer.css';
+import { collection, getDocs, query, where} from "firebase/firestore";
+import {DB} from "../Firebase/configs.js"
+
 
 export default function ItemListContainer () {
-  const { id } = useParams();
-    const categoryId = !isNaN(id) && +id;
+    const [data, setData] = useState([]);
+    const {categoryId} = useParams()
 
-    const [productsData, setProductsData] = useState([]);
+    useEffect(()=>{
+
+      const colRef = collection(DB, "Productos");
+    
+      if(categoryId){
+        const  colFilterRef = query(colRef, 
+          where('cat', '==', categoryId))
+        getDocs(colRef)
+        .then(res=> setData(res.docs.map(prod => ({id:prod.id, ...prod.data()})))
+        )
+        getDocs(colFilterRef)
+        .then(res=> setData(res.docs.map(prod => ({id:prod.id, ...prod.data()})))
+        )}else{
+          getDocs(colRef)
+          .then(res=> setData(res.docs.map(prod => ({id:prod.id, ...prod.data()})))
+          )
+        };  
+      
+    },[categoryId]);
+
+
+
+
+    /* const [productsData, setProductsData] = useState([]);
     useEffect(() => {
 
         setProductsData([]);
@@ -26,12 +51,12 @@ export default function ItemListContainer () {
                 );
             }
         );
-    }, [categoryId]);
+    }, [categoryId]); */
   
 
   return (
     <div>
-      {Array.isArray(productsData) && productsData.length === 0 ? (
+        {Array.isArray(data) && data.length === 0 ? (
                  <div className="waviy">
                  <span style={{'--i':'1'}}>Aguarde... </span>
                  <span style={{'--i':'2'}}>Los </span>
@@ -40,7 +65,7 @@ export default function ItemListContainer () {
                  <span style={{'--i':'5'}}>llegando </span>
                 </div>
             ) : (
-                <ItemList products={productsData} />
+                <ItemList products={data} category={categoryId} />
             )}
     </div>
   )
