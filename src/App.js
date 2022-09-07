@@ -4,6 +4,7 @@ import ItemDetailContainer from "./components/ItemDetailContainer";
 import ItemListContainer from "./components/ItemListContainer";
 import CartCustomContext from './components/CartContext';
 import Cart from "./components/Cart";
+import Footer from "./components/Footer/index.js";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                 </Routes>
             </BrowserRouter>
     </CartCustomContext>
+    <Footer />
     </div>
     );
 }

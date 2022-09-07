@@ -3,6 +3,8 @@ import Contador from '../Contador';
 import Card from "react-bootstrap/Card"
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../CartContext';
+import Button from 'react-bootstrap/esm/Button';
+import "./itemDetail.css"
 
 export default function ItemDetail ({
   id, 
@@ -11,7 +13,8 @@ export default function ItemDetail ({
   category, 
   stock, 
   imagen,
-  inicial
+  inicial,
+  detail
 }) {
 
   const { addCartItem } = useCartContext();
@@ -24,11 +27,6 @@ export default function ItemDetail ({
         imagen,
         precio        
     } );
-
-      console.log(
-          ">> Evento recibido del ItemCount! - Cantidad agregada: ",
-          quantityToAdd
-      );
       setProductAddedToCard(true);
   };
 
@@ -45,14 +43,14 @@ export default function ItemDetail ({
         <Card.Body>
             <Card.Title>
                 <h1>{nombre}</h1>
-                <h2>{category}</h2>
+                <h5 className="description" >{detail}</h5>
             </Card.Title>
             <Card.Text className="fw-bold fs-3">${precio}</Card.Text>
             <div className="text-center">                                
             </div>
             <div className="container-fluid">
                 <div className="row">
-                {productAddedToCard ? <Link to={`/cart`} >Agregado! Ver carrito</Link> : (
+                {productAddedToCard ? <div className="row"><Button as={Link} to={`/cart`} className="btn btn-info m-2" >Agregado! Ver carrito</Button><Button as={Link} to={`/`} className="btn btn-info m-2" >Continuar comprando</Button></div> : (
                 <Contador
                     onAddItemsToCart={onAdd}
                     stock={stock}

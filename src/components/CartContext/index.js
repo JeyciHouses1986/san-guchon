@@ -53,7 +53,7 @@ export default function CartCustomContext({ children }) {
 
   //Funcion total de productos
   const totalProductos = () => {
-    return cart.reduce((prev, act) => prev + act.cantidad, 0);
+    return cart.reduce((prev, act) => prev + act.quantity, 0);
   };
 
   //Funcion finalizar compra
