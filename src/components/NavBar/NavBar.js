@@ -9,9 +9,10 @@ import './navbar.css'
 export default function NavBar() {
   return (
     
-    <Navbar className="navbar "  expand="lg">
+    <Navbar className="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light"  expand="lg">
       <Container>
-        <Nav.Link classname="logo-nav" as={Link} to={'/'}>San Guchon</Nav.Link>
+      <img className='imagen-logo' src="../imagenes/san-guchon-logo.png" alt="..." />
+        <Nav.Link className="loguito" as={Link} to={'/'}>San Guchon</Nav.Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

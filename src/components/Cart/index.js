@@ -1,6 +1,7 @@
 import React from "react";
 import { useCartContext } from "../CartContext";
 import CartItem from "../CartItem";
+import './cart.css'
 import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
 import {
@@ -50,8 +51,8 @@ export default function Cart() {
 
   return (
     <div className="d-flex row justify-content-evenly">
-      <h3>Santos invocados:</h3>
-      <div className="card-group">
+      <h3 className="invocados-carrito">Santos invocados:</h3>
+      <div className="d-flex justify-content-center card-group">
         {cartData.length > 0
           ? cartData.map((item) => {
               return (
@@ -65,42 +66,42 @@ export default function Cart() {
                 />
               );
             })
-          : "No has agregado ningun Santo a tus plegarias!"}
+          : <h3 className="display-3 text-right">No has agregado ningun Santo a tus plegarias!</h3>}
       </div>
       <form>
         <div className="row">
           <div className="col">
-            <input
+            <input required
               type="text"
               className="form-control m-1"
-              placeholder="Nombre"
+              placeholder="Nombre" 
             />
           </div>
           <div className="col">
-            <input
+            <input required
               type="text"
               className="form-control m-1"
-              placeholder="Apellido"
+              placeholder="Apellido" 
             />
           </div>
         </div>
         <div className="row">
           <div className="col">
-            <input
+            <input required
               type="email"
-              className="form-control"
+              className="form-control m-1"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder="Ingrese su correo electronico"
+              placeholder="Ingrese su correo electronico" 
             ></input>
           </div>
           <div className="col">
-          <input
+          <input required
               type="email"
-              className="form-control"
+              className="form-control m-1"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder="Repita su correo electronico"
+              placeholder="Repita su correo electronico" 
             ></input>
           </div>
         </div>

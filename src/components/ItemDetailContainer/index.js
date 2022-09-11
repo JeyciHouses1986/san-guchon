@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../ItemDetail';
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+import './itemDetailContainer.css'
 
 export default function ItemDetailContainer() {
 
@@ -23,7 +24,10 @@ export default function ItemDetailContainer() {
             {productData && productData.id ? (
                 <ItemDetail {...productData} />
             ) : (
-                <div className="loading">Cargando detalle del producto...</div>
+                <div className="waviy">
+                 <span style={{'--i':'1'}}>Elevando </span>
+                 <span style={{'--i':'2'}}>plegarias </span>
+                </div>
             )}
         </div>
     )

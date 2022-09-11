@@ -1,0 +1,23 @@
+.navbar {
+    position: sticky; 
+    top:0px;
+    z-index:100;
+}
+
+.loguito {
+    color: rgb(255, 255, 255);
+    font: 2em sans-serif;
+    margin-right: 1em;
+}
+
+.loguito:hover {
+    color: rgb(180, 180, 180);
+}
+
+.imagen-logo {
+    width: 60px;
+    height: 60px;
+    max-height: 300px;
+    max-width: 300px;
+    margin-right: 15px;
+}
