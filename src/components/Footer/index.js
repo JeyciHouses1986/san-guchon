@@ -12,7 +12,7 @@ export default function Footer() {
         style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
       >
         © 2022 Copyright: {" "}
-        <a className="text-dark" href="https://github.com/JeyciHouses1986" target="_blank">
+        <a className="text-dark" href="https://github.com/JeyciHouses1986" target="_blank" rel="noreferrer">
           Jeyci WebDeb
         </a>
       </div>
